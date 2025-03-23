@@ -39,18 +39,34 @@ def paddle_1_up():
     y = y + 10
     paddle_1.sety(y)
     if y > 240:
-        paddle_1.sety(300)
+        paddle_1.sety(240)
+
+def paddle_1_down():
+    y = paddle_1.ycor()
+    y = y - 10
+    paddle_1.sety(y)
+    if y < -240:
+        paddle_1.sety(-240)
 
 def paddle_2_up():
     y = paddle_2.ycor()
     y = y + 10
     paddle_2.sety(y)
     if y > 240:
-        paddle_2.sety(300)
+        paddle_2.sety(240)
+
+def paddle_2_down():
+    y = paddle_2.ycor()
+    y = y - 10
+    paddle_2.sety(y)
+    if y < -240:
+        paddle_2.sety(-240)
 
 screen.listen()
 screen.onkeypress(paddle_1_up, "w")
+screen.onkeypress(paddle_1_down, "s")
 screen.onkeypress(paddle_2_up, "Up")
+screen.onkeypress(paddle_2_down, "Down")
 
 
 
