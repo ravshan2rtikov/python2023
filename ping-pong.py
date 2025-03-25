@@ -1,4 +1,5 @@
 import turtle
+import time
 
 screen = turtle.Screen()
 screen.title("Ping Pong")
@@ -31,7 +32,8 @@ ball.shape("square")
 ball.color("white")
 ball.penup()
 ball.goto(0, 0)
-
+ball.dx = 0.3
+ball.dy = -0.3
 
 # functions
 def paddle_1_up():
@@ -72,4 +74,36 @@ screen.onkeypress(paddle_2_down, "Down")
 
 
 while True:
-      screen.update()
+    screen.update()
+    
+    # moves the ball
+    ball.setx(ball.xcor() + ball.dx)
+    ball.sety(ball.ycor() + ball.dy)
+    
+    # ball's borders
+    if ball.ycor() > 290:
+        ball.sety(290)
+        ball.dy *= -1
+
+    if ball.ycor() < -290:
+        ball.sety(-290)
+        ball.dy *= -1
+
+    if ball.xcor() > 390:
+        ball.goto(0, 0)
+        ball.dx *= -1
+
+    if ball.xcor() < -390:
+        ball.setx(-290)
+        ball.dx *= -1
+
+    time.sleep(0.001)
+
+    # paddle and ball collision
+    if (ball.xcor() > 340 and ball.xcor() < 350) and (ball.ycor() < paddle_2.ycor() + 40 and ball.ycor() > paddle_2.ycor() -40):
+        ball.setx(340)
+        ball.dx *= -1
+
+    if (ball.xcor() < -340 and ball.xcor() > -350) and (ball.ycor() < paddle_1.ycor() + 40 and ball.ycor() > paddle_1.ycor() -40):
+        ball.setx(-340)
+        ball.dx *= -1
