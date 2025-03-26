@@ -35,6 +35,15 @@ ball.goto(0, 0)
 ball.dx = 0.3
 ball.dy = -0.3
 
+# pen
+pen = turtle.Turtle()
+pen.speed(0)
+pen.color("white")
+pen.penup()
+pen.hideturtle()
+pen.goto(0, 260)
+pen.write("Player 1: 0  Player 2: 0", align="center", font=("Courier", 24, "normal"))
+
 # functions
 def paddle_1_up():
     y = paddle_1.ycor()
