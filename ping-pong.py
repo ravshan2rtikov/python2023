@@ -44,6 +44,7 @@ pen.hideturtle()
 pen.goto(0, 260)
 pen.write("Player 1: 0  Player 2: 0", align="center", font=("Courier", 24, "normal"))
 
+
 # functions
 def paddle_1_up():
     y = paddle_1.ycor()
@@ -52,12 +53,14 @@ def paddle_1_up():
     if y > 240:
         paddle_1.sety(240)
 
+
 def paddle_1_down():
     y = paddle_1.ycor()
     y = y - 10
     paddle_1.sety(y)
     if y < -240:
         paddle_1.sety(-240)
+
 
 def paddle_2_up():
     y = paddle_2.ycor()
@@ -66,12 +69,14 @@ def paddle_2_up():
     if y > 240:
         paddle_2.sety(240)
 
+
 def paddle_2_down():
     y = paddle_2.ycor()
     y = y - 10
     paddle_2.sety(y)
     if y < -240:
         paddle_2.sety(-240)
+
 
 screen.listen()
 screen.onkeypress(paddle_1_up, "w")
@@ -80,15 +85,13 @@ screen.onkeypress(paddle_2_up, "Up")
 screen.onkeypress(paddle_2_down, "Down")
 
 
-
-
 while True:
     screen.update()
-    
+
     # moves the ball
     ball.setx(ball.xcor() + ball.dx)
     ball.sety(ball.ycor() + ball.dy)
-    
+
     # ball's borders
     if ball.ycor() > 290:
         ball.sety(290)
@@ -109,10 +112,14 @@ while True:
     time.sleep(0.001)
 
     # paddle and ball collision
-    if (ball.xcor() > 340 and ball.xcor() < 350) and (ball.ycor() < paddle_2.ycor() + 40 and ball.ycor() > paddle_2.ycor() -40):
+    if (ball.xcor() > 340 and ball.xcor() < 350) and (
+        ball.ycor() < paddle_2.ycor() + 40 and ball.ycor() > paddle_2.ycor() - 40
+    ):
         ball.setx(340)
         ball.dx *= -1
 
-    if (ball.xcor() < -340 and ball.xcor() > -350) and (ball.ycor() < paddle_1.ycor() + 40 and ball.ycor() > paddle_1.ycor() -40):
+    if (ball.xcor() < -340 and ball.xcor() > -350) and (
+        ball.ycor() < paddle_1.ycor() + 40 and ball.ycor() > paddle_1.ycor() - 40
+    ):
         ball.setx(-340)
         ball.dx *= -1
